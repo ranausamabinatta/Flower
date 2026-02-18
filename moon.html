@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ramadan Moon</title>
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  color: white;
+
+  background-image: url("ramadan.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Main Ramadan Text */
+#ramadanText {
+  font-size: 3rem;
+  font-weight: bold;
+  background: rgba(0,0,0,0.6);
+  padding: 20px 40px;
+  border-radius: 20px;
+  animation: glow 2s infinite alternate;
+  z-index: 10;
+}
+
+/* Hidden moon message */
+#moonMessage {
+  display: none;
+  margin-top: 20px;
+  font-size: 2.5rem;
+  font-weight: bold;
+  animation: fadeIn 2s forwards;
+  z-index: 10;
+}
+
+/* Moon circle */
+#moon {
+  display: none;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, #fff9c4, #ffd700);
+  border-radius: 50%;
+  margin-top: 10px;
+  box-shadow: 0 0 40px gold;
+  animation: fadeIn 2s forwards;
+}
+
+/* Back Button */
+#backBtn {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.85);
+  color: #333;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+#backBtn:hover {
+  background: gold;
+  transform: scale(1.1);
+}
+
+/* Glow animation */
+@keyframes glow {
+  from { text-shadow: 0 0 5px gold; }
+  to { text-shadow: 0 0 20px gold, 0 0 40px orange; }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Lanterns */
+.lantern {
+  position: absolute;
+  top: -100px;
+  font-size: 40px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="ramadanText">🌙 Ramadan Kareem my Love ✨</div>
+<div id="moonMessage">You are my moon 💖</div>
+<div id="moon"></div>
+
+<!-- Back to Home Button -->
+<button id="backBtn" onclick="window.location.href='index.html'">⬅ Back to Home</button>
+
+<script>
+// After 2 seconds show moon message + moon
+setTimeout(() => {
+  document.getElementById("moonMessage").style.display = "block";
+  document.getElementById("moon").style.display = "block";
+}, 2000);
+
+// Lantern shower after 2 seconds
+setTimeout(() => {
+  for (let i = 0; i < 20; i++) {
+    let lantern = document.createElement("div");
+    lantern.className = "lantern";
+    lantern.innerHTML = "🏮"; 
+    lantern.style.left = Math.random() * 100 + "vw";
+    lantern.style.animationDuration = (3 + Math.random() * 5) + "s";
+    document.body.appendChild(lantern);
+  }
+}, 2000);
+</script>
+
+</body>
+</html>

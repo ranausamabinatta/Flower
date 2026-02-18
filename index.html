@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sweet Website</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow: hidden;
+
+      background-image: url("sakura.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* Main Page Content */
+    #mainPage {
+      z-index: 5;
+    }
+
+    h1 {
+      font-size: 3rem;
+      background: rgba(0,0,0,0.4);
+      padding: 10px 20px;
+      border-radius: 15px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      background: rgba(255,255,255,0.85);
+      color: #333;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: pink;
+      transform: scale(1.1);
+    }
+
+    /* Flowers */
+    .flower {
+      position: absolute;
+      font-size: 40px;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(720deg); }
+    }
+
+    /* Love Message */
+    #loveText {
+      display: none;
+      position: fixed;
+      top: 40%;
+      font-size: 3rem;
+      font-weight: bold;
+      background: rgba(0,0,0,0.6);
+      padding: 20px 40px;
+      border-radius: 20px;
+      animation: glow 2s infinite alternate;
+      z-index: 10;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px pink; }
+      to { text-shadow: 0 0 25px hotpink, 0 0 50px gold; }
+    }
+
+    /* Homepage Button */
+    #homeBtn {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      font-size: 20px;
+      padding: 15px 30px;
+      border-radius: 20px;
+      background: white;
+      color: black;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    #homeBtn:hover {
+      background: gold;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- MAIN PAGE -->
+<div id="mainPage">
+  <h1>Welcome sweetheart 💖</h1>
+
+  <div class="buttons">
+    <button onclick="window.open('moon.html')">🌙 Moon</button>
+    <button onclick="boomFlowers()">Boom 💥</button>
+  </div>
+</div>
+
+<!-- Love Text -->
+<div id="loveText">🌸 You fill colors in my life 💖</div>
+
+<!-- Homepage Button -->
+<button id="homeBtn" onclick="goHome()">🏠 Homepage</button>
+
+<script>
+function boomFlowers() {
+  // Hide main page
+  document.getElementById("mainPage").style.display = "none";
+
+  // Show love text and homepage button
+  document.getElementById("loveText").style.display = "block";
+  document.getElementById("homeBtn").style.display = "block";
+
+  // Massive flower shower
+  const flowers = ["🌸","🌼","🌺","🌷","💐","🌻","🪻","🌹"];
+  for (let i = 0; i < 1000; i++) {
+    let f = document.createElement("div");
+    f.className = "flower";
+    f.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+    f.style.left = Math.random() * 100 + "vw";
+    f.style.top = "-50px";
+    f.style.fontSize = (20 + Math.random() * 50) + "px";
+    f.style.animationDuration = (2 + Math.random() * 4) + "s";
+    
+    // Add random animation delay so flowers start at different times
+    f.style.animationDelay = Math.random() * 4 + "s"; // up to 4 seconds delay
+    
+    document.body.appendChild(f);
+  }
+}
+
+
+// Go back to main page
+function goHome() {
+  location.reload(); // easiest way to reset everything
+}
+</script>
+
+</body>
+</html>
